@@ -78,6 +78,22 @@
               "wasm32-unknown-unknown"
             ];
           };
+
+          rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (
+            toolchain:
+            toolchain.default.override {
+              extensions = [
+                "rust-src"
+                "rust-analyzer"
+                "clippy"
+                "rustfmt"
+              ];
+              targets = [
+                "x86_64-unknown-linux-musl"
+                "wasm32-unknown-unknown"
+              ];
+            }
+          );
         };
 
         devShells.default = pkgs.mkShell {
